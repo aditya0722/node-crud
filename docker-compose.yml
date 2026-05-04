@@ -1,0 +1,36 @@
+services:
+  # 1. Database
+  postgres-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: users
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Express Backend
+  node-crud:
+    build: ./server # Path to your Express Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres-db
+    environment:
+      - CONN=postgresql://postgres_user:1234@postgres-db:5432/users
+      - JWT_SECRET=ajskd82h3kjsdh8237hsd7h23hskd
+
+  # 3. React Frontend (Nginx)
+  node-client:
+    build: ./client # Path to your React Dockerfile
+    ports:
+      - "5173:80" # Maps local 5173 to Nginx port 80
+    depends_on:
+      - node-crud
+
+volumes:
+  postgres_data:
+
