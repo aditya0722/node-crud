@@ -10,6 +10,6 @@ app.listen(PORT,"0.0.0.0",()=>{
     console.log(" server is running");
     
 })
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Server is running");
 });

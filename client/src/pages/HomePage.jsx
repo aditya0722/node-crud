@@ -22,7 +22,7 @@ export default function HomePage() {
   const getUSers = async () => {
     try {
       setloading(true)
-      const response = await fetch('http://13.55.38.20:3000/api/users', {
+      const response = await fetch('api/users', {
         method: 'GET',
         headers: {
           'authorization': `Bearer ${token}`,
@@ -52,7 +52,7 @@ export default function HomePage() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://13.55.38.20:3000/api/users/${id}`, {
+      const response = await fetch(`api/users/${id}`, {
         method: 'DELETE',
         headers: {
           'authorization': `Bearer ${token}`,
@@ -102,7 +102,7 @@ export default function HomePage() {
 
   const handleEdit = async (id, updateUser) => {
     try {
-      const response = await fetch(`http://13.55.38.20:3000/api/users/${id}`, {
+      const response = await fetch(`api/users/${id}`, {
         method: 'PATCH',
         headers: {
           'authorization': `Bearer ${token}`,
