@@ -1,6 +1,7 @@
 import React from "react";
 import '../App.css';
 import { Link } from "react-router-dom";
+import fetchWithAuth from "../api/fetchWithAuth";
 export default function Register() {  
    const [formData,setFormData] = React.useState({
     name:"",

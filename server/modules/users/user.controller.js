@@ -28,6 +28,7 @@ const deleteUser=async(req,res)=>{
     }
 }
 const updateUser=async(req,res)=>{
+    console.log(req);
     
     const {name,email}=req.body;
     const {id}=req.params;
